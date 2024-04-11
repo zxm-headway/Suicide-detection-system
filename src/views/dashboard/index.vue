@@ -1,11 +1,11 @@
 <template>
   <div class="dashboard-container">
     <!-- github角标 -->
-    <github-corner class="github-corner" />
+    <!-- <github-corner class="github-corner" /> -->
 
     <el-card shadow="never">
       <el-row justify="space-between">
-        <el-col :span="18" :xs="24">
+        <el-col :span="16" :xs="24">
           <div class="flex h-full items-center">
             <img
               class="w-20 h-20 mr-5 rounded-full"
@@ -13,14 +13,12 @@
             />
             <div>
               <p>{{ greetings }}</p>
-              <p class="text-sm text-gray">
-                今日天气晴朗，气温在15℃至25℃之间，东南风。
-              </p>
+              <p class="text-sm text-gray">欢迎来到自杀倾向检测系统</p>
             </div>
           </div>
         </el-col>
 
-        <el-col :span="6" :xs="24">
+        <el-col :span="8" :xs="24">
           <div class="flex h-full items-center justify-around">
             <el-statistic
               v-for="item in statisticData"
@@ -29,18 +27,25 @@
             >
               <template #title>
                 <div class="flex items-center">
-                  <svg-icon :icon-class="item.iconClass" size="20px" />
+                  <!-- <svg-icon :icon-class="item.iconClass" size="20px" /> -->
                   <span class="text-[16px] ml-1">{{ item.title }}</span>
                 </div>
+
+                <el-button class="detail_button" type="success" size="small"
+                  >查看详情</el-button
+                >
               </template>
-              <template v-if="item.suffix" #suffix>/100</template>
+              <!-- <template v-if="item.suffix" #suffix>/100</template> -->
+              <template #suffix
+                ><span style="font-size: small">样本量</span></template
+              >
             </el-statistic>
           </div>
         </el-col>
       </el-row>
     </el-card>
 
-    <!-- 数据卡片 -->
+    <!-- 数据卡片
     <el-row :gutter="10" class="mt-3">
       <el-col
         :xs="24"
@@ -76,7 +81,7 @@
           </div>
         </el-card>
       </el-col>
-    </el-row>
+    </el-row> -->
 
     <!-- Echarts 图表 -->
     <el-row :gutter="10" class="mt-3">
@@ -118,11 +123,11 @@ const greetings = computed(() => {
   if (hours >= 6 && hours < 8) {
     return "晨起披衣出草堂，轩窗已自喜微凉🌅！";
   } else if (hours >= 8 && hours < 12) {
-    return "上午好，" + userStore.user.nickname + "！";
+    return "上午好，" + userStore.user.nickname + "!";
   } else if (hours >= 12 && hours < 18) {
-    return "下午好，" + userStore.user.nickname + "！";
+    return "下午好，" + userStore.user.nickname + "!";
   } else if (hours >= 18 && hours < 24) {
-    return "晚上好，" + userStore.user.nickname + "！";
+    return "晚上好，" + userStore.user.nickname + "!";
   } else {
     return "偷偷向银河要了一把碎星，只等你闭上眼睛撒入你的梦中，晚安🌛！";
   }
@@ -165,23 +170,26 @@ orderCount.value = 2000;
 // 右上角数量
 const statisticData = ref([
   {
-    value: 99,
+    value: 500,
     iconClass: "message",
-    title: "消息",
-    key: "message",
+    title: "reddit数据",
+    type: "primary",
+    key: "reddit",
   },
   {
     value: 50,
     iconClass: "todolist",
-    title: "待办",
+    title: "tweeter数据",
     suffix: "/100",
-    key: "upcoming",
+    type: "success",
+    key: "tweeter",
   },
   {
     value: 10,
-    iconClass: "project",
-    title: "项目",
-    key: "project",
+    // iconClass: "project",
+    title: "微博数据",
+    type: "warning",
+    key: "weibo",
   },
 ]);
 
@@ -233,7 +241,7 @@ const cardData = ref<CardProp[]>([
   },
 ]);
 // 图表数据
-const chartData = ref(["BarChart", "PieChart", "RadarChart"]);
+const chartData = ref(["PieChart", "BarChart", "Wordclound"]);
 const chartComponent = (item: string) => {
   return defineAsyncComponent(() => import(`./components/${item}.vue`));
 };
@@ -271,6 +279,13 @@ const chartComponent = (item: string) => {
 
   .svg-icon {
     fill: currentcolor !important;
+  }
+  .countdown-footer {
+    margin-top: 8px;
+  }
+
+  .detail_button {
+    margin-top: 8px;
   }
 }
 </style>

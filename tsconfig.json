@@ -1,3 +1,4 @@
+// 因为 typescript 特殊的 import 方式 , 需要配置允许默认导入的方式，还有路径别名的配置
 {
   "compilerOptions": {
     "target": "esnext",
@@ -24,6 +25,7 @@
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment"
   },
+  //
   "include": [
     "src/**/*.ts",
     "src/**/*.vue",

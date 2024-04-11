@@ -1,3 +1,5 @@
+//用于存放自动导入函数和组件的TS类型声明文件，再进行自动导入配置
+
 declare global {
   /**
    * 分页查询参数
@@ -83,4 +85,4 @@ declare global {
     children?: OptionType[];
   }
 }
-export {};
+export { };

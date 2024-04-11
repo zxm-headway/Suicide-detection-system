@@ -3,7 +3,7 @@
   <el-card>
     <template #header>
       <div class="title">
-        业绩柱状图
+        情感分类柱状图
         <el-tooltip effect="dark" content="点击试试下载" placement="bottom">
           <i-ep-download class="download" @click="downloadEchart" />
         </el-tooltip>
@@ -39,106 +39,29 @@ const props = defineProps({
 });
 
 const options = {
-  grid: {
-    left: "2%",
-    right: "2%",
-    bottom: "10%",
-    containLabel: true,
+  tooltip: {},
+  // legend: {
+  //   // data: ["负面情绪", "正面情绪"],
+  // },
+  xAxis: {
+    data: ["负面情绪样本", "正面情绪样本"],
   },
-  tooltip: {
-    trigger: "axis",
-    axisPointer: {
-      type: "cross",
-      crossStyle: {
-        color: "#999",
-      },
-    },
-  },
-  legend: {
-    x: "center",
-    y: "bottom",
-    data: ["收入", "毛利润", "收入增长率", "利润增长率"],
-    textStyle: {
-      color: "#999",
-    },
-  },
-  xAxis: [
-    {
-      type: "category",
-      data: ["浙江", "北京", "上海", "广东", "深圳"],
-      axisPointer: {
-        type: "shadow",
-      },
-    },
-  ],
-  yAxis: [
-    {
-      type: "value",
-      min: 0,
-      max: 10000,
-      interval: 2000,
-      axisLabel: {
-        formatter: "{value} ",
-      },
-    },
-    {
-      type: "value",
-      min: 0,
-      max: 100,
-      interval: 20,
-      axisLabel: {
-        formatter: "{value}%",
-      },
-    },
-  ],
+  yAxis: {},
   series: [
     {
-      name: "收入",
+      name: "负面情绪",
       type: "bar",
-      data: [7000, 7100, 7200, 7300, 7400],
-      barWidth: 20,
+      data: [207, 292],
       itemStyle: {
-        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-          { offset: 0, color: "#83bff6" },
-          { offset: 0.5, color: "#188df0" },
-          { offset: 1, color: "#188df0" },
-        ]),
-      },
-    },
-    {
-      name: "毛利润",
-      type: "bar",
-      data: [8000, 8200, 8400, 8600, 8800],
-      barWidth: 20,
-      itemStyle: {
-        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-          { offset: 0, color: "#25d73c" },
-          { offset: 0.5, color: "#1bc23d" },
-          { offset: 1, color: "#179e61" },
-        ]),
-      },
-    },
-    {
-      name: "收入增长率",
-      type: "line",
-      yAxisIndex: 1,
-      data: [60, 65, 70, 75, 80],
-      itemStyle: {
-        color: "#67C23A",
-      },
-    },
-    {
-      name: "利润增长率",
-      type: "line",
-      yAxisIndex: 1,
-      data: [70, 75, 80, 85, 90],
-      itemStyle: {
-        color: "#409EFF",
+        color: function (params: any) {
+          // 定义一个颜色数组
+          const colorList = ["#91c7ae", "#749f83"];
+          return colorList[params.dataIndex];
+        },
       },
     },
   ],
 };
-
 const downloadEchart = () => {
   // 获取画布图表地址信息
   const img = new Image();
@@ -186,6 +109,7 @@ onActivated(() => {
   }
 });
 </script>
+
 <style lang="scss" scoped>
 .title {
   display: flex;

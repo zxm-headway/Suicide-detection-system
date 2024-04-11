@@ -28,11 +28,13 @@ const __APP_INFO__ = {
   buildTimestamp: Date.now(),
 };
 
+// 设置的路由别名
 const pathSrc = resolve(__dirname, "src");
 //  https://cn.vitejs.dev/config
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const env = loadEnv(mode, process.cwd());
   return {
+    // 路径别名
     resolve: {
       alias: {
         "@": pathSrc,
@@ -68,6 +70,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         },
       },
     },
+
     plugins: [
       vue(),
       // jsx、tsx语法支持
@@ -78,6 +81,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         hmrTopLevelAwait: false,
       }),
       // 自动导入参考： https://github.com/sxzz/element-plus-best-practices/blob/main/vite.config.ts
+      // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
       AutoImport({
         // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
         imports: ["vue", "@vueuse/core", "pinia", "vue-router", "vue-i18n"],

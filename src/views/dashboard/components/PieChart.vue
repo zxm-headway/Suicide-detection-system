@@ -1,7 +1,7 @@
 <!-- 饼图 -->
 <template>
   <el-card>
-    <template #header> 产品分类饼图 </template>
+    <template #header> 自杀风险分类饼图 </template>
     <div :id="id" :class="className" :style="{ height, width }"></div>
   </el-card>
 </template>
@@ -46,25 +46,36 @@ const options = {
     {
       name: "Nightingale Chart",
       type: "pie",
-      radius: [50, 130],
+      radius: [30, 100],
       center: ["50%", "50%"],
       roseType: "area",
+
       itemStyle: {
         borderRadius: 1,
         color: function (params: any) {
           //自定义颜色
-          const colorList = ["#409EFF", "#67C23A", "#E6A23C", "#F56C6C"];
+          const colorList = [
+            "#409EFF",
+            "#67C23A",
+            "#E6A23C",
+            "#F56C6C",
+            "#909399",
+          ];
           return colorList[params.dataIndex];
         },
       },
       data: [
-        { value: 26, name: "家用电器" },
-        { value: 27, name: "户外运动" },
-        { value: 24, name: "汽车用品" },
-        { value: 23, name: "手机数码" },
+        { value: 108, name: "Supportive" },
+        { value: 99, name: "Indicator" },
+        { value: 171, name: "Ideation" },
+        { value: 77, name: "Behavior" },
+        { value: 45, name: "Attempt" },
       ],
     },
   ],
+  tooltip: {
+    trigger: "item",
+  },
 };
 
 const chart = ref<any>("");

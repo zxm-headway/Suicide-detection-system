@@ -17,6 +17,7 @@
             :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)"
             :title="onlyOneChild.meta.title"
           />
+          <!-- <span>{{ resolvePath(onlyOneChild.path) }}</span> -->
         </el-menu-item>
       </AppLink>
     </template>

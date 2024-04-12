@@ -4,6 +4,7 @@
   </el-icon>
   <svg-icon v-else-if="icon" :icon-class="icon" />
   <svg-icon v-else icon-class="menu" />
+  <!-- <span>1111</span> -->
   <span v-if="title" class="ml-1">{{ translateRouteTitle(title) }}</span>
 </template>
 

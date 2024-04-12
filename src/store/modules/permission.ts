@@ -14,6 +14,7 @@ const Layout = () => import("@/layout/index.vue");
  * @returns
  */
 const hasPermission = (roles: string[], route: RouteRecordRaw) => {
+  // 判断用户(角色)是否有该路由的访问权限 (meta.roles), 如果没有设置roles则默认不拦截
   if (route.meta && route.meta.roles) {
     // 角色【超级管理员】拥有所有权限，忽略校验
     if (roles.includes("ROOT")) {
@@ -36,21 +37,26 @@ const hasPermission = (roles: string[], route: RouteRecordRaw) => {
  * @returns 返回用户有权限的异步(动态)路由
  */
 const filterAsyncRoutes = (routes: RouteRecordRaw[], roles: string[]) => {
+  // 递归过滤有权限的异步(动态)路由
   const asyncRoutes: RouteRecordRaw[] = [];
 
   routes.forEach((route) => {
     const tmpRoute = { ...route }; // ES6扩展运算符复制新对象
     if (!route.name) {
+      // 为没有name的路由设置name为path
       tmpRoute.name = route.path;
     }
     // 判断用户(角色)是否有该路由的访问权限
-    if (hasPermission(roles, tmpRoute)) {
+    // if (hasPermission(roles, tmpRoute)) {
+    if (true) {
       if (tmpRoute.component?.toString() == "Layout") {
         tmpRoute.component = Layout;
       } else {
         const component = modules[`../../views/${tmpRoute.component}.vue`];
         if (component) {
           tmpRoute.component = component;
+
+          // console.log(tmpRoute.component);
         } else {
           tmpRoute.component = modules[`../../views/error-page/404.vue`];
         }

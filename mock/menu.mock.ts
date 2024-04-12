@@ -1,3 +1,4 @@
+import { tr } from "element-plus/es/locale";
 import { defineMock } from "./base";
 
 export default defineMock([
@@ -10,76 +11,29 @@ export default defineMock([
         {
           path: "/system",
           component: "Layout",
-          redirect: "/system/user",
+          // redirect: "/system/user",
           name: "/system",
           meta: {
-            title: "自杀文本检测",
+            title: "文本检测",
             icon: "system",
             hidden: false,
             roles: ["ADMIN"],
           },
-          // children: [
-          //   {
-          //     path: "user",
-          //     component: "system/user/index",
-          //     name: "User",
-          //     meta: {
-          //       title: "用户管理",
-          //       icon: "user",
-          //       hidden: false,
-          //       roles: ["ADMIN"],
-          //       keepAlive: true,
-          //     },
-          //   },
-          //   {
-          //     path: "role",
-          //     component: "system/role/index",
-          //     name: "Role",
-          //     meta: {
-          //       title: "角色管理",
-          //       icon: "role",
-          //       hidden: false,
-          //       roles: ["ADMIN"],
-          //       keepAlive: true,
-          //     },
-          //   },
-          //   {
-          //     path: "menu",
-          //     component: "system/menu/index",
-          //     name: "Menu",
-          //     meta: {
-          //       title: "菜单管理",
-          //       icon: "menu",
-          //       hidden: false,
-          //       roles: ["ADMIN"],
-          //       keepAlive: true,
-          //     },
-          //   },
-          //   {
-          //     path: "dept",
-          //     component: "system/dept/index",
-          //     name: "Dept",
-          //     meta: {
-          //       title: "部门管理",
-          //       icon: "tree",
-          //       hidden: false,
-          //       roles: ["ADMIN"],
-          //       keepAlive: true,
-          //     },
-          //   },
-          //   {
-          //     path: "dict",
-          //     component: "system/dict/index",
-          //     name: "Dict",
-          //     meta: {
-          //       title: "字典管理",
-          //       icon: "dict",
-          //       hidden: false,
-          //       roles: ["ADMIN"],
-          //       keepAlive: true,
-          //     },
-          //   },
-          // ],
+          children: [
+            {
+              path: "user",
+              component: "system/user/index",
+              name: "User",
+              meta: {
+                title: "自定义文本检测",
+                icon: "text detection",
+                hidden: false,
+                // alwaysShow: false,
+                roles: ["ADMIN"],
+                keepAlive: true,
+              },
+            },
+          ],
         },
         {
           path: "/api",

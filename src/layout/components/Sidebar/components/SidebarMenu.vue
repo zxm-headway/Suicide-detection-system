@@ -30,6 +30,7 @@ const settingsStore = useSettingsStore();
 const appStore = useAppStore();
 const currentRoute = useRoute();
 const layout = computed(() => settingsStore.layout);
+
 const props = defineProps({
   menuList: {
     required: true,
@@ -50,6 +51,7 @@ const props = defineProps({
  * @param routePath 路由路径 /user
  */
 function resolvePath(routePath: string) {
+  //用于检查一个路径是否是外部路径
   if (isExternal(routePath)) {
     return routePath;
   }
